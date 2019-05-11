@@ -3,6 +3,9 @@ namespace MarkShust\OrderGrid\Model\ResourceModel\Order\Grid;
 
 use Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
 
+/**
+ * Resource model for Order Grid Collection.
+ */
 class Collection extends SearchResult
 {
     /**
@@ -116,11 +119,11 @@ class Collection extends SearchResult
      */
     public function getSize()
     {
-        if ($this->_totalRecords === NULL) {
+        if ($this->_totalRecords === null) {
             $sql = $this->getSelectCountSql();
             $this->_totalRecords = count($this->getConnection()->fetchAll($sql, $this->_bindParams));
         }
 
-        return intval($this->_totalRecords);
+        return (int) $this->_totalRecords;
     }
 }
