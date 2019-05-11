@@ -4,7 +4,8 @@ namespace MarkShust\OrderGrid\Model\ResourceModel\Order\Grid;
 use Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
 
 /**
- * Resource model for Order Grid Collection.
+ * Class Collection
+ * @package MarkShust\OrderGrid\Model\ResourceModel\Order\Grid
  */
 class Collection extends SearchResult
 {
