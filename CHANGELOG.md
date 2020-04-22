@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.0.4] - 2020-04-22
+
+### Fixed
+- Updated php and magento framework version constraints to >=7.1 and >=101 respectively, for more seamless compatibility with new Magento releases.
+
 ## [1.0.3] - 2020-04-22
 
 ### Fixed
