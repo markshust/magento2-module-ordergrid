@@ -1,17 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
-    <container name="listing_top">
-        <filters name="listing_filters">
-            <filterInput name="order_items">
-                <argument name="data" xsi:type="array">
-                    <item name="config" xsi:type="array">
-                        <item name="dataScope" xsi:type="string">order_items</item>
-                        <item name="label" xsi:type="string" translate="true">Order items</item>
-                    </item>
-                </argument>
-            </filterInput>
-        </filters>
-    </container>
     <columns name="sales_order_columns">
         <column name="order_items">
             <argument name="data" xsi:type="array">
@@ -24,6 +12,7 @@
                     <item name="align" xsi:type="string">left</item>
                     <item name="sortable" xsi:type="boolean">false</item>
                     <item name="label" xsi:type="string" translate="true">Order Items</item>
+                    <item name="filter" xsi:type="string">text</item>
                 </item>
             </argument>
         </column>
