@@ -40,7 +40,7 @@ class Collection extends SearchResult
      */
     public function addFieldToFilter($field, $condition = null)
     {
-        if ($field === 'products' && !$this->getFlag('product_filter_added')) {
+        if ($field === 'order_items' && !$this->getFlag('product_filter_added')) {
             // Add the sales/order_item model to this collection
             $this->getSelect()->join(
                 [$this->getTable('sales_order_item')],
@@ -61,9 +61,12 @@ class Collection extends SearchResult
             ]);
 
             $this->setFlag('product_filter_added', 1);
+
+            return $this;
+        } else {
+            return parent::addFieldToFilter($field, $condition);
         }
 
-        return parent::addFieldToFilter($field, $condition);
     }
 
     /**
