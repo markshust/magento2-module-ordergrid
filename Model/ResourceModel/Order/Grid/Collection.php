@@ -115,19 +115,4 @@ class Collection extends SearchResult
 
         return parent::_afterLoad();
     }
-
-    /**
-     * Get the record count.
-     *
-     * @return int
-     */
-    public function getSize()
-    {
-        if ($this->_totalRecords === null) {
-            $sql = $this->getSelectCountSql();
-            $this->_totalRecords = count($this->getConnection()->fetchAll($sql, $this->_bindParams));
-        }
-
-        return (int) $this->_totalRecords;
-    }
 }
