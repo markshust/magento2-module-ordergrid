@@ -1,7 +1,9 @@
-<?php
+<?php declare(strict_types=1);
+
 namespace MarkShust\OrderGrid\Model\ResourceModel\Order\Grid;
 
 use Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
+use Zend_Db_Expr;
 
 /**
  * Class Collection
@@ -14,7 +16,7 @@ class Collection extends SearchResult
      *
      * @return $this
      */
-    protected function _initSelect()
+    protected function _initSelect(): self
     {
         parent::_initSelect();
 
@@ -38,7 +40,7 @@ class Collection extends SearchResult
      * @param string|int|array|null $condition
      * @return SearchResult
      */
-    public function addFieldToFilter($field, $condition = null)
+    public function addFieldToFilter($field, $condition = null): SearchResult
     {
         if ($field === 'order_items' && !$this->getFlag('product_filter_added')) {
             // Add the sales/order_item model to this collection
@@ -74,7 +76,7 @@ class Collection extends SearchResult
      *
      * @return SearchResult
      */
-    protected function _afterLoad()
+    protected function _afterLoad(): SearchResult
     {
         $items = $this->getColumnValues('entity_id');
 
@@ -87,18 +89,18 @@ class Collection extends SearchResult
                     'sales_order_item' => $this->getTable('sales_order_item'),
                 ], [
                     'order_id',
-                    'product_skus'  => new \Zend_Db_Expr('GROUP_CONCAT(`sales_order_item`.sku SEPARATOR "|")'),
-                    'product_names' => new \Zend_Db_Expr('GROUP_CONCAT(`sales_order_item`.name SEPARATOR "|")'),
-                    'product_qtys'  => new \Zend_Db_Expr('GROUP_CONCAT(`sales_order_item`.qty_ordered SEPARATOR "|")'),
+                    'product_skus'  => new Zend_Db_Expr('GROUP_CONCAT(`sales_order_item`.sku SEPARATOR "|")'),
+                    'product_names' => new Zend_Db_Expr('GROUP_CONCAT(`sales_order_item`.name SEPARATOR "|")'),
+                    'product_qtys'  => new Zend_Db_Expr('GROUP_CONCAT(`sales_order_item`.qty_ordered SEPARATOR "|")'),
                 ])
                 ->where('order_id IN (?)', $items)
                 ->where('parent_item_id IS NULL') // Eliminate configurable products, otherwise two products show
                 ->group('order_id');
 
-            $itemCollection = $connection->fetchAll($select);
+            $items = $connection->fetchAll($select);
 
             // Loop through this sql an add items to related orders
-            foreach ($itemCollection as $item) {
+            foreach ($items as $item) {
                 $row = $this->getItemById($item['order_id']);
                 $productSkus = explode('|', $item['product_skus']);
                 $productQtys = explode('|', $item['product_qtys']);
@@ -109,7 +111,7 @@ class Collection extends SearchResult
                     $html .= sprintf('<div>%d x [%s] %s </div>', $productQtys[$index], $sku, $productNames[$index]);
                 }
 
-                $row->setOrderItems($html);
+                $row->setData('order_items', $html);
             }
         }
 
