@@ -3,13 +3,14 @@
 namespace MarkShust\OrderGrid\Model\ResourceModel\Order\Grid;
 
 use Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
+use Magento\Sales\Model\ResourceModel\Order\Grid\Collection as OrderGridCollection;
 use Zend_Db_Expr;
 
 /**
  * Class Collection
  * @package MarkShust\OrderGrid\Model\ResourceModel\Order\Grid
  */
-class Collection extends SearchResult
+class Collection extends OrderGridCollection
 {
     /**
      * Initialize the select statement.
