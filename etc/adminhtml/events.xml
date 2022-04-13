@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_order_place_after">
+        <observer name="MarkShust_OrderGrid::sales_order_place_after"
+                  instance="MarkShust\OrderGrid\Observer\SalesOrderPlaceAfter" />
+    </event>
+</config>
