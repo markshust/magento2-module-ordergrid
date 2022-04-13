@@ -13,4 +13,11 @@
             <argument name="resourceModel" xsi:type="string">Magento\Sales\Model\ResourceModel\Order</argument>
         </arguments>
     </virtualType>
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="created_by" xsi:type="string">sales_order.created_by</item>
+            </argument>
+        </arguments>
+    </virtualType>
 </config>
