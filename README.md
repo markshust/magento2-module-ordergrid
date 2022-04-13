@@ -1,4 +1,4 @@
-<h1 align="center">MarkShust_OrderGrid</h1> 
+<h1 align="center">MarkShust_OrderGrid Modified</h1> 
 
 <div align="center">
   <p>Adds more details to the order grid in the admin.</p>
@@ -20,7 +20,8 @@
 
 Out of the box, the Magento admin displays high-level information within the sales order grid. It does not provide more detailed information would could be useful to specific businesses.
 
-This module adds more detailed information to the admin order grid. Initially, a new column is added to the order grid which contains order line items, which includes specific quantity and product names of items ordered.
+This module adds more detailed information to the admin order grid. Initially, a new column is added to the order grid which contains order line items, which includes specific quantity and product names of items ordered. 
+**Update** : If the order is created by any admin user, then it will show the username of the current admin in the grid with the column name "Created By"
 
 ## Installation
 
