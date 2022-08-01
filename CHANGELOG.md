@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2022-08-01
+
+### Updated
+- Update order_items field into export-friendly format. [#12](https://github.com/markshust/magento2-module-ordergrid/issues/12)
+
 ## [1.0.9] - 2021-11-02
 
 ### Fixed

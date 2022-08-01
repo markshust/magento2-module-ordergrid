@@ -2,11 +2,11 @@
     "name": "markshust/magento2-module-ordergrid",
     "description": "The Order Grid module adds more details to the order grid in the admin.",
     "require": {
-        "php": ">=7.1",
+        "php": "^7|^8",
         "magento/framework": ">=101"
     },
     "type": "magento2-module",
-    "version": "1.0.9",
+    "version": "1.1.0",
     "license": [
         "MIT"
     ],
