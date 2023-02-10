@@ -13,35 +13,13 @@ use Zend_Db_Expr;
 class Collection extends OrderGridCollection
 {
     /**
-     * Initialize the select statement.
-     *
-     * @return $this
-     */
-    protected function _initSelect(): self
-    {
-        parent::_initSelect();
-
-        // Add the sales_order_item model to this collection
-        $this->join(
-            [$this->getTable('sales_order_item')],
-            "main_table.entity_id = {$this->getTable('sales_order_item')}.order_id",
-            []
-        );
-
-        // Group by the order id, which is initially what this grid is id'd by
-        $this->getSelect()->group('main_table.entity_id');
-
-        return $this;
-    }
-
-    /**
      * Add field to filter.
      *
      * @param string|array $field
      * @param string|int|array|null $condition
-     * @return SearchResult
+     * @return Collection
      */
-    public function addFieldToFilter($field, $condition = null): SearchResult
+    public function addFieldToFilter($field, $condition = null): Collection
     {
         if ($field === 'order_items' && !$this->getFlag('product_filter_added')) {
             // Add the sales/order_item model to this collection
@@ -69,7 +47,6 @@ class Collection extends OrderGridCollection
         } else {
             return parent::addFieldToFilter($field, $condition);
         }
-
     }
 
     /**
