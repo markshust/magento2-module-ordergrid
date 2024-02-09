@@ -61,35 +61,37 @@ class Collection extends OrderGridCollection
         if (count($items)) {
             $connection = $this->getConnection();
 
-            // Build out item sql to add products to the order data
+            // Fetch products data separately
             $select = $connection->select()
                 ->from([
                     'sales_order_item' => $this->getTable('sales_order_item'),
                 ], [
                     'order_id',
-                    'product_skus'  => new Zend_Db_Expr('GROUP_CONCAT(`sales_order_item`.sku SEPARATOR "|")'),
-                    'product_names' => new Zend_Db_Expr('GROUP_CONCAT(`sales_order_item`.name SEPARATOR "|")'),
-                    'product_qtys'  => new Zend_Db_Expr('GROUP_CONCAT(`sales_order_item`.qty_ordered SEPARATOR "|")'),
+                    'sku',
+                    'name',
+                    'qty_ordered',
                 ])
                 ->where('order_id IN (?)', $items)
-                ->where('parent_item_id IS NULL') // Eliminate configurable products, otherwise two products show
-                ->group('order_id');
+                ->where('parent_item_id IS NULL'); // Eliminate configurable products, otherwise two products show
 
-            $items = $connection->fetchAll($select);
+            $productData = $connection->fetchAll($select);
 
-            // Loop through this sql an add items to related orders
-            foreach ($items as $item) {
-                $row = $this->getItemById($item['order_id']);
-                $productSkus = explode('|', $item['product_skus']);
-                $productQtys = explode('|', $item['product_qtys']);
-                $productNames = explode('|', $item['product_names']);
-                $html = '';
+            // Aggregate products data
+            $productsByOrderId = [];
+            foreach ($productData as $product) {
+                $productsByOrderId[$product['order_id']][] = $product;
+            }
 
-                foreach ($productSkus as $index => $sku) {
-                    $html .= sprintf('<div>%d x [%s] %s </div>', $productQtys[$index], $sku, $productNames[$index]);
+            // Loop through orders and aggregate products
+            foreach ($items as $orderId) {
+                if (isset($productsByOrderId[$orderId])) {
+                    $row = $this->getItemById($orderId);
+                    $html = '';
+                    foreach ($productsByOrderId[$orderId] as $product) {
+                        $html .= sprintf('<div>%d x [%s] %s </div>', $product['qty_ordered'], $product['sku'], $product['name']);
+                    }
+                    $row->setData('order_items', $html);
                 }
-
-                $row->setData('order_items', $html);
             }
         }
 
