@@ -14,6 +14,7 @@
 - [Summary](#summary)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Credits](#credits)
 - [License](#license)
 
 ## Summary
@@ -35,6 +36,25 @@ bin/magento setup:upgrade
 This module has no configuration. Just install, and you'll see a new column in the order grid called Order Items.
 
 ![Screenshot](https://raw.githubusercontent.com/markshust/magento2-module-ordergrid/master/docs/demo.png)
+
+## Credits
+
+### M.academy
+
+This course is sponsored by <a href="https://macade.my/s4c9Qk" target="_blank">M.academy</a>, the simplest way to learn Magento.
+
+<a href="https://macade.my/s4c9Qk" target="_blank"><img src="docs/macademy-logo.png" alt="M.academy"></a>
+
+### Mark Shust
+
+My name is Mark Shust and I am a 6X Adobe Commerce Certified Developer and the founder of <a href="https://macade.my/s4c9Qk" target="_blank">M.academy</a>. Since the early days of Magento, I've been involved with many intricately complex eCommerce and open-source projects.
+
+My passion is teaching and helping others learn Magento, and has created many courses and tutorials to help thousands of students from all over the world to learn and improve their Magento skills.
+
+- <a href="https://macade.my/s4c9Qk" target="_blank">🖥️ Learn with Magento courses</a>
+- <a href="https://www.linkedin.com/in/MarkShust/" target="_blank">🔗 Connect on LinkedIn</a>
+- <a href="https://youtube.com/markshust" target="_blank">🎥 Watch on YouTube</a>
+- <a href="https://m.academy/contact/" target="_blank">💌 Contact me</a>
 
 ## License
 
